@@ -22,14 +22,15 @@ router.get('/', (req, res) => {
 // GET - Returns a post based of a specific ID
 
 router.get('/:id', (req, res) => {
-    posts.findById(req.params.id)
+    const id = req.params.id;
+    posts.findById(id)
     .then(post => {
-        if (!post) {
+        if (!id) {
             res.status(404).json({
                 errorMsg: 'The post with the specified ID does not exist.'
             })
         }
-        else if (post) {
+        else if (id) {
             res.status(200).json(post)
         }
         else {
